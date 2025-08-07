@@ -4,7 +4,6 @@ provider "aws" {
 resource "aws_instance" "frontend" {
         ami = "ami-0f918f7e67a3323f0"
         instance_type="t2.micro"
-        depends_on=[ aws_instance.backend ]
         tags = {
                 Name="frontend"
                }
@@ -12,3 +11,4 @@ resource "aws_instance" "frontend" {
                     create_before_destroy = true
                   }
 }
+
