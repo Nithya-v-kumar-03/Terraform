@@ -8,4 +8,5 @@ resource "aws_instance" "frontend" {
                 Name="test"
                }
 }
-~
+
+terraform apply --var=instance_type="t2.medium"
