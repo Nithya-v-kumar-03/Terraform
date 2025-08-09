@@ -4,5 +4,5 @@ variable "zone" {
 }
 variable "name" {
         type=list(string)
-        default=["front" , "back"]
+        default=["frontend" , "backend"]
 }
