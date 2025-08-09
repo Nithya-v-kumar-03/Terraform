@@ -1,0 +1,16 @@
+provider "aws" {
+ region="ap-south-1"
+}
+variable "zones" {
+        type=list(string)
+        default=["ap-south-1a" , "ap-south-1b"]
+}
+resource "aws_instance" "frontend" {
+        ami = "ami-0f918f7e67a3323f0"
+        instance_type="t2.micro"
+        count=2
+        availability_zone=var.zones[count.index]
+        tags = {
+                Name=var.names[count.index]
+               }
+}
