@@ -11,10 +11,7 @@ data "aws_ami" "myami" {
           name="architecture"
           values=["x86_64"]
          }
-      filter {
-          name="platform"
-          values=["ubuntu"]
-         }
+      
 }
 resource "aws_instance" "frontend" {
         ami = data.aws_ami.myami.id
