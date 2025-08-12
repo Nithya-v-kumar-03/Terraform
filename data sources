@@ -1,22 +1,23 @@
 provider "aws" {
-    region="ap-south-1"
+    region = "ap-south-1"
 }
 data "aws_ami" "myami" {
-    owners= ["amazon"]
+    most_recent = true
+    owners = ["amazon"]
     filter {
-          name="name"
-          values=["ubuntu"]
+          name = "name"
+          values = ["*ubuntu*"]
          }
      filter {
-          name="architecture"
-          values=["x86_64"]
+          name = "architecture"
+          values = ["x86_64"]
          }
-      
 }
 resource "aws_instance" "frontend" {
         ami = data.aws_ami.myami.id
         instance_type="t2.micro"
         tags = {
                 Name="dataSourceTest"
-        }
+               }
 }
+
