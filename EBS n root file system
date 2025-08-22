@@ -28,6 +28,6 @@ root_block_device {
 }
 resource "aws_volume_attachment"  "my_attachment" {
         device_name = "/dev/sdh"
-        volume_id = aws_ebs_voulume.myvolume.id
+        volume_id = aws_ebs_volume.myvolume.id
         instance_id = aws_instance.instance.id
 }
