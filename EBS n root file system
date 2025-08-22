@@ -19,7 +19,7 @@ root_block_device {
 
         volume_size = "10"
         volume_type = "gp2"
-        encrupted = "true"
+        encrypted = "true"
         delete_on_termination = "true"
         tags = {
            Name = "myrootvolume"
