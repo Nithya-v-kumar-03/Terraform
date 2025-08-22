@@ -1,0 +1,33 @@
+provider "aws" {
+ region="ap-south-1"
+}
+resource "aws_ebs_voulume" "myvolume" {
+       availability_zone = "ap-south-1a"
+       size = 5
+       tags = {
+              Name = "myvolume"
+}
+}
+resource "aws_instance" "instance" {
+        ami = "ami-0f918f7e67a3323f0"
+        instance_type="t2.micro"
+        availability_zone= "ap-south-1a"
+        tags = {
+                Name="myinstance"
+               }
+root_block_device {
+
+        volume_size = "10"
+        volume_type = "gp2"
+        encrupted = "true"
+        delete_on_termination = "true"
+        tags = {
+           Name = "myrootvolume"
+}
+}
+}
+resource "aws_volume_attachment"  "my_attachment" {
+        device_name = "/dev/sdh"
+        volume_id = aws_ebs_voulume.myvolume.id
+        instance_id = aws_instance.instance.id
+}
