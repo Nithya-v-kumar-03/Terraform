@@ -1,7 +1,7 @@
 provider "aws" {
  region="ap-south-1"
 }
-resource "aws_ebs_voulume" "myvolume" {
+resource "aws_ebs_volume" "myvolume" {
        availability_zone = "ap-south-1a"
        size = 5
        tags = {
