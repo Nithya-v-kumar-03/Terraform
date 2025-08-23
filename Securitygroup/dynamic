@@ -1,0 +1,29 @@
+provider "aws" {
+     region="ap-south-1"
+}
+variable "ports" {
+       type = list(number)
+       default = [8080 , 8081]
+}
+resource "aws_security_group" "test-sg" {
+     name = "my-sg"
+     description = "test sg"
+     dynamic ingress {
+     for_each = var.ports
+     content {
+     from_port = ingress.value
+     to_port =  ingress.value
+     protocol = "tcp"
+     cidr_blocks = ["0.0.0.0/0"]
+}
+}
+dynamic egress {
+     for_each = var.ports
+     content {
+     from_port = egress.value
+     to_port =  egress.value
+     protocol = "tcp"
+     cidr_blocks = ["0.0.0.0/0"]
+}
+}
+}
